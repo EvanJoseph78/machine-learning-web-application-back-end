@@ -44,7 +44,6 @@ const cursoSchema = new Schema(
         },
         formacao2: {
           type: String,
-          required: true,
         },
       },
     ],
@@ -80,7 +79,6 @@ const cursoSchema = new Schema(
             },
             linkcapa: {
               type: String,
-              required: true,
             },
             materiaisextras: {
               type: String,

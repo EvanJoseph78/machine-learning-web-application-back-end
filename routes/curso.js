@@ -15,7 +15,12 @@ router.route("/cursos").get((req, res) => cursoController.getAll(req, res));
 
 // cria um módulo de um curso
 router
-  .route("/cursos/:id/modulos")
+  .route("/cursos/:id/add/modulos")
   .post((req, res) => cursoController.addModule(req, res));
+
+// cria uma aula dentro de um módulo
+router
+  .route("/cursos/:id/modulos/add/aula")
+  .post((req, res) => cursoController.addAula());
 
 module.exports = router;

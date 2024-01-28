@@ -3,9 +3,20 @@ const express = require("express");
 const app = express();
 require("dotenv").config(); // permite a aplicação trabalhar com variáveis de ambiente
 const PORT = process.env.PORT || 3000;
+// documentação da API
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocs = require("./swagger.json");
 
 // configs
 app.use(express.json());
+
+// Carregue a especificação OpenAPI do arquivo YAML
+const swaggerDocument = YAML.load("mlwa-api.yaml");
+
+// Rota para servir a documentação do Swagger
+// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // routes
 

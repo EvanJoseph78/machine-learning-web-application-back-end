@@ -12,7 +12,6 @@ const cursoController = {
         nivel: req.body.nivel,
         certificado: req.body.certificado,
         professores: req.body.professores,
-        modulos: req.body.modulos,
       };
 
       const reponse = await CursoModel.create(curso);

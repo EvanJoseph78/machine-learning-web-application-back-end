@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: API de Cursos
+  version: 1.0.0
+paths:
+  /cursos:
+    get:
+      summary: Obtém informações sobre todos os cursos
+      responses:
+        "200":
+          description: Sucesso
+          content:
+            application/json:
+              example:
+                - nome: Curso 1
+                  introducao: Introdução ao Curso 1
+                  descricao: Descrição do Curso 1
+                  duracao: 10
+                  disciplina: Matemática
+                  nivel: Avançado
+                  certificado: true
+                  professores:
+                    - nome: Professor 1
+                      formacao1: Bacharel em Ciências
+                      formacao2: Mestre em Educação
+                  modulos:
+                    - numeromodulo: 1
+                      titulo: Módulo 1
+                      linkcapa: https://example.com/modulo1_cover.jpg
+                      aulas:
+                        - numeroaula: 1
+                          titulo: Aula 1
+                          transcricao: Transcrição da Aula 1
+                          linkaula: https://example.com/aula1.mp4
+                          linkcapa: https://example.com/aula1_cover.jpg
+                          materiaisextras: https://example.com/materiais_extras_aula1.pdf
+                      questoes:
+                        - enunciado: Pergunta sobre o Módulo 1
+                          opcoes:
+                            - texto: Resposta 1
+                              correta: true
+                            - texto: Resposta 2
+                              correta: false
+                - nome: Curso 2
+                  introducao: Introdução ao Curso 2
+                  descricao: Descrição do Curso 2
+                  duracao: 8
+                  disciplina: História
+                  nivel: Intermediário
+                  certificado: false
+                  professores:
+                    - nome: Professor 2
+                      formacao1: Licenciatura em História
+                      formacao2: Doutorado em Educação
+                  modulos:
+                    - numeromodulo: 1
+                      titulo: Módulo 1
+                      linkcapa: https://example.com/modulo1_cover.jpg
+                      aulas:
+                        - numeroaula: 1
+                          titulo: Aula 1
+                          transcricao: Transcrição da Aula 1
+                          linkaula: https://example.com/aula1.mp4
+                          linkcapa: https://example.com/aula1_cover.jpg
+                          materiaisextras: https://example.com/materiais_extras_aula1.pdf
+                      questoes:
+                        - enunciado: Pergunta sobre o Módulo 1
+                          opcoes:
+                            - texto: Resposta 1
+                              correta: true
+                            - texto: Resposta 2
+                              correta: false
