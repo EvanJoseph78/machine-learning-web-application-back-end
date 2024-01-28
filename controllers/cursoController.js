@@ -1,4 +1,4 @@
-const { Curso: CursoModel } = require("../models/Curso");
+const { Curso: CursoModel, Curso } = require("../models/Curso");
 
 const cursoController = {
   create: async (req, res) => {
@@ -33,7 +33,7 @@ const cursoController = {
   },
   addModule: async (req, res) => {
     try {
-      const curso = await CursoModel.findById(req.params.id);
+      const curso = await CursoModel.findById(req.params.idcurso);
       // verifica se o curso existe
       if (!curso) {
         return res.status(404).json({ error: "Curso não encontrado" });
@@ -56,6 +56,40 @@ const cursoController = {
 
       // Responde com o curso atualizado
       res.status(201).json(curso);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
+  addAula: async (req, res) => {
+    try {
+      const curso = await CursoModel.findById(req.params.idcurso);
+
+      if (!curso) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+
+      const modulo = curso.modulos.id(req.params.idmodulo);
+      console.log(modulo);
+
+      if (!modulo) {
+        return res.status(404).json({ error: "Módulo não encontrado" });
+      }
+
+      const novaAula = {
+        numeroaula: req.body.numeroaula,
+        titulo: req.body.titulo,
+        linkaula: req.body.linkaula,
+        linkcapa: req.body.linkcapa,
+        materiaisextras: req.body.materiaisextras,
+      };
+
+      // Adiciona a aula ao array de aulas do módulo
+      modulo.aulas.push(novaAula);
+
+      await curso.save();
+
+      res.status(201).json({ curso, message: "Aula adicionada com sucesso!" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ msg: "Internal server error" });
