@@ -5,23 +5,7 @@ require("dotenv").config(); // permite a aplicação trabalhar com variáveis de
 const PORT = process.env.PORT || 3000;
 // documentação da API
 const swaggerUi = require("swagger-ui-express");
-// const swaggerDocs = require("./swagger.json");
-// const swaggerUi = require('swagger-ui-express')
-const swagger = require("./swagger");
-// app.use("/api-docs", swaggerUi.serve, swagger);
-
-// const specs = swaggerJsDoc(options);
-// app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
-
-// CDN CSS
-
-const CSS_URL =
-  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swagger, { customCssUrl: CSS_URL }),
-);
+const swaggerDocs = require("./swagger.json");
 
 // configs
 app.use(express.json());
@@ -30,15 +14,7 @@ app.use(express.json());
 
 // Rota para servir a documentação do Swagger
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// const CSS_URL =
-//   "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
-//
-// app.use(
-//   "/api-docs",
-//   swaggerUi.serve,
-//   swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL }),
-// );
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // routes
 
