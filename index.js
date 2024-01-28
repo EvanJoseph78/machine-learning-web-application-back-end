@@ -5,16 +5,13 @@ require("dotenv").config(); // permite a aplicação trabalhar com variáveis de
 const PORT = process.env.PORT || 3000;
 // documentação da API
 const swaggerUi = require("swagger-ui-express");
-const swaggerDocs = require("./swagger.json");
+const swagger = require("./configs/swagger.js");
 
 // configs
 app.use(express.json());
 
-// Carregue a especificação OpenAPI do arquivo YAML
-
 // Rota para servir a documentação do Swagger
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api-docs", swaggerUi.serve, swagger);
 
 // routes
 
