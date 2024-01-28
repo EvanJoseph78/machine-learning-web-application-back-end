@@ -35,6 +35,7 @@ const cursoController = {
     try {
       const curso = await CursoModel.findById(req.params.idcurso);
       // verifica se o curso existe
+      console.log(curso);
       if (!curso) {
         return res.status(404).json({ error: "Curso não encontrado" });
       }

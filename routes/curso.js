@@ -18,7 +18,7 @@ router.route("/cursos").get((req, res) => cursoController.getAll(req, res));
 
 // cria um módulo de um curso
 router
-  .route("/cursos/:id/add/modulos")
+  .route("/cursos/:idcurso/add/modulos")
   .post((req, res) => cursoController.addModule(req, res));
 
 // rotas de módulo

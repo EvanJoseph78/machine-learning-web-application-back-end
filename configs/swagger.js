@@ -138,6 +138,68 @@ swaggerOptions = {
           ],
         },
       },
+      "/cursos/{idcurso}/modulos/{idmodulo}/add/aula": {
+        post: {
+          summary: "Adiciona uma aula a um módulo em um curso.",
+          tags: ["Aulas"],
+          parameters: [
+            {
+              in: "path",
+              name: "idcurso",
+              required: true,
+              description: "ID do curso.",
+            },
+            {
+              in: "path",
+              name: "idmodulo",
+              required: true,
+              description: "ID do módulo.",
+            },
+          ],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    numeroaula: {
+                      type: "integer",
+                    },
+                    titulo: {
+                      type: "string",
+                    },
+                    linkaula: {
+                      type: "string",
+                    },
+                    linkcapa: {
+                      type: "string",
+                    },
+                    materiaisextras: {
+                      type: "string",
+                    },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "Aula adicionada com sucesso.",
+              content: {
+                "application/json": {
+                  example: {
+                    message: "Aula adicionada com sucesso!",
+                  },
+                  schema: {
+                    type: "object",
+                    $ref: "#/components/schemas/Aula",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     components: {
       securitySchemes: {
@@ -204,6 +266,26 @@ swaggerOptions = {
               type: "string",
             },
             linkcapa: {
+              type: "string",
+            },
+          },
+        },
+        Aula: {
+          type: "object",
+          properties: {
+            numeroaula: {
+              type: "number",
+            },
+            titulo: {
+              type: "string",
+            },
+            linkaula: {
+              type: "string",
+            },
+            linkcapa: {
+              type: "string",
+            },
+            materiaisextras: {
               type: "string",
             },
           },
