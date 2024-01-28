@@ -72,6 +72,71 @@ swaggerOptions = {
             },
           },
         },
+        get: {
+          summary: "Listagem de cursos",
+          description: "Rota responsável pela listagem de cursos",
+          tags: ["Cursos"],
+          responses: {
+            200: {
+              description: "OK",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    $ref: "#/components/schemas/Curso",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/cursos/{id}/add/modulos": {
+        post: {
+          summary: "Adiciona um módulo em um curso",
+          description: "Rota responsável pela adição de um módulo",
+          tags: ["Cursos"],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Modulo",
+                },
+                examples: {
+                  curso: {
+                    value: {
+                      numeromodulo: 1,
+                      titulo: "Módulo 1",
+                      linkcapa: "hppt://link.com",
+                    },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "OK",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    $ref: "#/components/schemas/Modulo",
+                  },
+                },
+              },
+            },
+          },
+
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              description: "Adiciona um módulo a um curso pelo id do curso",
+              required: true,
+            },
+          ],
+        },
       },
     },
     components: {
@@ -126,6 +191,20 @@ swaggerOptions = {
                   },
                 },
               },
+            },
+          },
+        },
+        Modulo: {
+          type: "object",
+          properties: {
+            numeromodulo: {
+              type: "number",
+            },
+            titulo: {
+              type: "string",
+            },
+            linkcapa: {
+              type: "string",
             },
           },
         },
