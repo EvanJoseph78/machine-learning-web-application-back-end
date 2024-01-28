@@ -8,4 +8,6 @@ router.route("/curso").post((req, res) => {
   cursoController.create(req, res);
 });
 
+router.route("/cursos").get((req, res) => cursoController.getAll(req, res));
+
 module.exports = router;
