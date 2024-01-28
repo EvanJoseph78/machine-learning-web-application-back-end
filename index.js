@@ -13,6 +13,9 @@ app.get("/", (_, res) => {
   return res.json("Hello World!");
 });
 
+const routes = require("./routes/router.js");
+app.use("/api", routes);
+
 // Conexão com o banco
 
 const connectDB = require("./db/connectMongo");
