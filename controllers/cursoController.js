@@ -32,6 +32,36 @@ const cursoController = {
       res.status(500).json({ msg: "Internal server error" });
     }
   },
+  addModule: async (req, res) => {
+    try {
+      const curso = await CursoModel.findById(req.params.id);
+      // verifica se o curso existe
+      if (!curso) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+
+      // Extrai os dados do módulo do corpo da solicitação
+      const novoModulo = {
+        numeromodulo: req.body.numeromodulo,
+        titulo: req.body.titulo,
+        linkcapa: req.body.linkcapa,
+        aulas: req.body.aulas,
+        questoes: req.body.questoes,
+      };
+
+      // Adiciona o módulo ao array de módulos do curso
+      curso.modulos.push(novoModulo);
+
+      // Salva o curso atualizado no banco de dados
+      await curso.save();
+
+      // Responde com o curso atualizado
+      res.status(201).json(curso);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
 };
 
 module.exports = cursoController;
