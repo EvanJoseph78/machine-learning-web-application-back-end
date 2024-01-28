@@ -12,7 +12,6 @@ const swaggerDocs = require("./swagger.json");
 app.use(express.json());
 
 // Carregue a especificação OpenAPI do arquivo YAML
-const swaggerDocument = YAML.load("mlwa-api.yaml");
 
 // Rota para servir a documentação do Swagger
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
