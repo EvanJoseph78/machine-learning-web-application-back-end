@@ -150,7 +150,7 @@ const cursoController = {
       };
 
       // Verifica se numeroaula é um número inteiro
-      if (!Number.isInteger(numeroaula) || numeroaula <= 0) {
+      if (!Number.isInteger(novaAula.numeroaula) || novaAula.numeroaula <= 0) {
         return res.status(400).json({ error: "O número da aula deve ser um número inteiro maior que 0" });
       }
 
