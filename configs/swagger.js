@@ -274,7 +274,6 @@ swaggerOptions = {
           }
         }
       }
-
     },
     components: {
       securitySchemes: {

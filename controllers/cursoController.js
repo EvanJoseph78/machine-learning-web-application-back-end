@@ -95,7 +95,6 @@ const cursoController = {
       }
 
       const modulo = curso.modulos.id(req.params.idmodulo);
-      console.log(modulo);
 
       if (!modulo) {
         return res.status(404).json({ error: "Módulo não encontrado" });
@@ -106,9 +105,9 @@ const cursoController = {
         opcoes: req.body.opcoes
       }
 
-      const opcoesVerdadeiras = novaQuestao.opcoes.filter((opcao) => { opcao.correta === true });
+      const opcoesVerdadeiras = novaQuestao.opcoes.filter((opcao) => opcao.correta === true);
 
-      if (opcoesVerdadeiras.lenght !== 1) {
+      if (opcoesVerdadeiras.length !== 1) {
         return res.status(400).json({ error: "Deve haver exatamente uma opção marcada como verdadeira" });
       }
 
@@ -119,6 +118,7 @@ const cursoController = {
       res.status(201).json({ curso, message: "Questão adicionada com sucesso!" });
     } catch (error) {
       console.error(error);
+
       res.status(500).json({ msg: "Internal server error" });
     }
   },
