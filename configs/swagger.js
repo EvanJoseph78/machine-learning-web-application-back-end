@@ -200,7 +200,7 @@ swaggerOptions = {
           },
         },
       },
-      "/curso/{idcurso}/modulo/{idmodulo}/add/question": {
+      "/cursos/{idcurso}/modulos/{idmodulo}/add/question": {
         post: {
           summary: "Adiciona uma nova questão a um módulo de um curso.",
           tags: ["Questões"],
