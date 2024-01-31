@@ -1,6 +1,10 @@
 const { Curso: CursoModel, Curso } = require("../models/Curso");
 
 const cursoController = {
+
+  // lógica de curso
+
+  // criação de curso
   create: async (req, res) => {
     try {
       const curso = {
@@ -22,6 +26,8 @@ const cursoController = {
       res.status(500).json({ msg: "Internal server error" });
     }
   },
+
+  // busca todos os cursos
   getAll: async (req, res) => {
     try {
       const cursos = await CursoModel.find();
@@ -31,6 +37,10 @@ const cursoController = {
       res.status(500).json({ msg: "Internal server error" });
     }
   },
+
+  // lógica de módulos
+
+  // adiciona um módulo a um curso existente
   addModule: async (req, res) => {
     try {
       const curso = await CursoModel.findById(req.params.idcurso);
@@ -46,7 +56,6 @@ const cursoController = {
         titulo: req.body.titulo,
         linkcapa: req.body.linkcapa,
         aulas: req.body.aulas,
-        questoes: req.body.questoes,
       };
 
       // Adiciona o módulo ao array de módulos do curso
@@ -62,6 +71,49 @@ const cursoController = {
       res.status(500).json({ msg: "Internal server error" });
     }
   },
+
+  // adiciona as questões pertencentes ao módulo
+
+  addQuestion: async (req, res) => {
+    try {
+      const curso = await CursoModel.findById(req.params.idcurso);
+
+      if (!curso) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+
+      const modulo = curso.modulos.id(req.params.idmodulo);
+      console.log(modulo);
+
+      if (!modulo) {
+        return res.status(404).json({ error: "Módulo não encontrado" });
+      }
+
+      const novaQuestao = {
+        enunciado: req.body.enunciado,
+        opcoes: req.body.opcoes
+      }
+
+      const opcoesVerdadeiras = novaQuestao.opcoes.filter((opcao) => { opcao.correta === true });
+
+      if (opcoesVerdadeiras.lenght !== 1) {
+        return res.status(400).json({ error: "Deve haver exatamente uma opção marcada como verdadeira" });
+      }
+
+      modulo.questoes.push(novaQuestao);
+
+      await curso.save();
+
+      res.status(201).json({ curso, message: "Questão adicionada com sucesso!" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
+
+  // lógica de aulas
+
+  // adiciona uma aula a um módulo existente
   addAula: async (req, res) => {
     try {
       const curso = await CursoModel.findById(req.params.idcurso);

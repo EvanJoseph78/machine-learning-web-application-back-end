@@ -200,6 +200,81 @@ swaggerOptions = {
           },
         },
       },
+      "/curso/{idcurso}/modulo/{idmodulo}/add/question": {
+        post: {
+          summary: "Adiciona uma nova questão a um módulo de um curso.",
+          tags: ["Questões"],
+          parameters: [
+            {
+              in: "path",
+              name: "idcurso",
+              required: true,
+              description: "ID do curso.",
+              schema: {
+                type: "string"
+              }
+            },
+            {
+              in: "path",
+              name: "idmodulo",
+              required: true,
+              description: "ID do módulo.",
+              schema: {
+                type: "string"
+              }
+            }
+          ],
+          requestBody: {
+            description: "Dados da nova questão.",
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    enunciado: {
+                      type: "string",
+                      description: "Enunciado da questão."
+                    },
+                    opcoes: {
+                      type: "array",
+                      items: {
+                        properties: {
+                          texto: {
+                            type: "string",
+                            description: "Texto da opção."
+                          },
+                          correta: {
+                            type: "boolean",
+                            description: "Indica se a opção é correta ou não."
+                          }
+                        }
+
+                      }
+                    }
+                  },
+                  required: ["enunciado", "texto", "correta"]
+                }
+              }
+            }
+          },
+          responses: {
+            201: {
+              description: "Questão adicionada com sucesso."
+            },
+            400: {
+              description: "Requisição inválida (por exemplo, propriedade 'correta' não é um booleano)."
+            },
+            404: {
+              description: "Curso ou módulo não encontrado."
+            },
+            500: {
+              description: "Erro interno do servidor."
+            }
+          }
+        }
+      }
+
     },
     components: {
       securitySchemes: {

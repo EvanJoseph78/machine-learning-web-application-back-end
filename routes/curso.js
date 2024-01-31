@@ -29,4 +29,8 @@ router
 
 // rotas de módulo
 
+router
+  .route("/cursos/:idcurso/modulos/:idmodulo/add/question")
+  .post((req, res) => cursoController.addQuestion(req, res));
+
 module.exports = router;
