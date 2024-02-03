@@ -1,7 +1,6 @@
 const { Curso: CursoModel, Curso } = require("../models/Curso");
 
 const cursoController = {
-
   // lógica de curso
 
   // criação de curso
@@ -15,6 +14,7 @@ const cursoController = {
         disciplina: req.body.disciplina,
         nivel: req.body.nivel,
         certificado: req.body.certificado,
+        topicos: req.body.topicos,
         professores: req.body.professores,
       };
 
@@ -51,7 +51,6 @@ const cursoController = {
         return res.status(404).json({ error: "Curso não encontrado" });
       }
 
-
       // Extrai os dados do módulo do corpo da solicitação
       const novoModulo = {
         numeromodulo: req.body.numeromodulo,
@@ -60,15 +59,24 @@ const cursoController = {
       };
 
       // Verifica se já existe um módulo com o mesmo número
-      const moduloExistente = curso.modulos.find(modulo => modulo.numeromodulo === novoModulo.numeromodulo);
+      const moduloExistente = curso.modulos.find(
+        (modulo) => modulo.numeromodulo === novoModulo.numeromodulo,
+      );
 
       if (moduloExistente) {
-        return res.status(400).json({ error: "Já existe um módulo com o mesmo número" });
+        return res
+          .status(400)
+          .json({ error: "Já existe um módulo com o mesmo número" });
       }
 
       // Garante que numeromodulo é um número inteiro
-      if (!Number.isInteger(novoModulo.numeromodulo) || novoModulo.numeromodulo <= 0) {
-        return res.status(400).json({ error: "O número do módulo deve ser um número inteiro maior que 0" });
+      if (
+        !Number.isInteger(novoModulo.numeromodulo) ||
+        novoModulo.numeromodulo <= 0
+      ) {
+        return res.status(400).json({
+          error: "O número do módulo deve ser um número inteiro maior que 0",
+        });
       }
 
       // Adiciona o módulo ao array de módulos do curso
@@ -103,20 +111,26 @@ const cursoController = {
 
       const novaQuestao = {
         enunciado: req.body.enunciado,
-        opcoes: req.body.opcoes
-      }
+        opcoes: req.body.opcoes,
+      };
 
-      const opcoesVerdadeiras = novaQuestao.opcoes.filter((opcao) => opcao.correta === true);
+      const opcoesVerdadeiras = novaQuestao.opcoes.filter(
+        (opcao) => opcao.correta === true,
+      );
 
       if (opcoesVerdadeiras.length !== 1) {
-        return res.status(400).json({ error: "Deve haver exatamente uma opção marcada como verdadeira" });
+        return res.status(400).json({
+          error: "Deve haver exatamente uma opção marcada como verdadeira",
+        });
       }
 
       modulo.questoes.push(novaQuestao);
 
       await curso.save();
 
-      res.status(201).json({ curso, message: "Questão adicionada com sucesso!" });
+      res
+        .status(201)
+        .json({ curso, message: "Questão adicionada com sucesso!" });
     } catch (error) {
       console.error(error);
 
@@ -152,14 +166,20 @@ const cursoController = {
 
       // Verifica se numeroaula é um número inteiro
       if (!Number.isInteger(novaAula.numeroaula) || novaAula.numeroaula <= 0) {
-        return res.status(400).json({ error: "O número da aula deve ser um número inteiro maior que 0" });
+        return res.status(400).json({
+          error: "O número da aula deve ser um número inteiro maior que 0",
+        });
       }
 
       // Verifica se já existe uma aula com o mesmo número
-      const aulaExistente = modulo.aulas.find(aula => aula.numeroaula === novaAula.numeroaula);
+      const aulaExistente = modulo.aulas.find(
+        (aula) => aula.numeroaula === novaAula.numeroaula,
+      );
 
       if (aulaExistente) {
-        return res.status(400).json({ error: "Já existe uma aula com o mesmo número" });
+        return res
+          .status(400)
+          .json({ error: "Já existe uma aula com o mesmo número" });
       }
 
       // Adiciona a aula ao array de aulas do módulo

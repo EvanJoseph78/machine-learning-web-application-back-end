@@ -38,6 +38,9 @@ const cursoSchema = new Schema(
     },
     professores: [
       {
+        imgperfil: {
+          type: String,
+        },
         nome: {
           type: String,
           required: true,
