@@ -32,6 +32,10 @@ const cursoSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    topicos: {
+      type: [String],
+      required: true,
+    },
     professores: [
       {
         nome: {
