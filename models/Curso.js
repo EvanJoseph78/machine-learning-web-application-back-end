@@ -54,6 +54,9 @@ const cursoSchema = new Schema(
         },
       },
     ],
+    linkcapa: {
+      type: String,
+    },
     modulos: [
       {
         numeromodulo: {

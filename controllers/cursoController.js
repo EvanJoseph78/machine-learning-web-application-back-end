@@ -16,6 +16,7 @@ const cursoController = {
         certificado: req.body.certificado,
         topicos: req.body.topicos,
         professores: req.body.professores,
+        linkcapa: req.body.linkcapa,
       };
 
       const reponse = await CursoModel.create(curso);
