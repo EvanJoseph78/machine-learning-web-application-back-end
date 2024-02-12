@@ -104,11 +104,11 @@ const cursoController = {
         return res.status(404).json({ error: "Curso não encontrado" });
       }
 
-      const modulo = curso.modulos.id(req.params.idmodulo);
-
-      if (!modulo) {
-        return res.status(404).json({ error: "Módulo não encontrado" });
-      }
+      // const modulo = curso.modulos.id(req.params.idmodulo);
+      //
+      // if (!modulo) {
+      //   return res.status(404).json({ error: "Módulo não encontrado" });
+      // }
 
       const novaQuestao = {
         enunciado: req.body.enunciado,
@@ -125,7 +125,7 @@ const cursoController = {
         });
       }
 
-      modulo.questoes.push(novaQuestao);
+      curso.questoes.push(novaQuestao);
 
       await curso.save();
 

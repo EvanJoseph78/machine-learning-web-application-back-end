@@ -96,28 +96,29 @@ const cursoSchema = new Schema(
           },
         ],
 
-        questoes: [
+      },
+    ],
+    questoes: [
+      {
+        enunciado: {
+          type: String,
+          required: true,
+        },
+        opcoes: [
           {
-            enunciado: {
+            texto: {
               type: String,
               required: true,
             },
-            opcoes: [
-              {
-                texto: {
-                  type: String,
-                  required: true,
-                },
-                correta: {
-                  type: Boolean,
-                  required: true,
-                },
-              },
-            ],
+            correta: {
+              type: Boolean,
+              required: true,
+            },
           },
         ],
       },
     ],
+
   },
   { timestamps: true },
 );

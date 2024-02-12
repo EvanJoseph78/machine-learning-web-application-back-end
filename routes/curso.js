@@ -30,7 +30,7 @@ router
 // rotas de módulo
 
 router
-  .route("/cursos/:idcurso/modulos/:idmodulo/add/question")
+  .route("/cursos/:idcurso/modulos/add/question")
   .post((req, res) => cursoController.addQuestion(req, res));
 
 module.exports = router;
