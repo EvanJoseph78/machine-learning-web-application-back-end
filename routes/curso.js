@@ -33,4 +33,8 @@ router
   .route("/cursos/:idcurso/modulos/add/question")
   .post((req, res) => cursoController.addQuestion(req, res));
 
+router
+  .route("/cursos/:idcurso/modulos/questions")
+  .get((req, res) => cursoController.getQuestions(req, res));
+
 module.exports = router;

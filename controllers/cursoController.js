@@ -139,6 +139,24 @@ const cursoController = {
     }
   },
 
+  getQuestions: async (req, res) => {
+    try {
+      // Encontre o curso pelo ID
+      const curso = await CursoModel.findById(req.params.idcurso);
+
+      // Verifique se o curso existe
+      if (!curso) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+
+      // Retorne o questionário do curso
+      res.status(200).json({ questionario: curso.questoes });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
+
   // lógica de aulas
 
   // adiciona uma aula a um módulo existente
