@@ -1,36 +1,40 @@
-const express = require("express");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import auth from "./routes/auth.js";
+import users from "./routes/users.js";
+import cursos from "./routes/course.js";
+import modulo from "./routes/module.js";
+import cookieParser from "cookie-parser";
+
+//configs
 const app = express();
-const cors = require("cors");
-require("dotenv").config(); // permite a aplicação trabalhar com variáveis de ambiente
-const PORT = process.env.PORT || 3000;
-// documentação da API
-const swaggerUi = require("swagger-ui-express");
-const swagger = require("./configs/swagger.js");
-
-// configs
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
 
-// Rota para servir a documentação do Swagger
-app.use("/api-docs", swaggerUi.serve, swagger);
+dotenv.config()
+
+const connect = () => {
+  mongoose
+    .connect(process.env.MONGODB_CONNECT_URI)
+    .then(() => {
+      console.log("Conectado ao banco");
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 
 // routes
 
-app.get("/", (_, res) => {
-  return res.json("Hello World!");
-});
+app.use("/api/auth", auth);
+app.use("/api/users", users);
+app.use("/api/courses", cursos);
+app.use("/api/course", modulo);
 
-const routes = require("./routes/router.js");
-app.use("/api", routes);
 
-// Conexão com o banco
-
-const connectDB = require("./db/connectMongo");
-
-connectDB();
-
-// iniciando servidor
-
+const PORT = 8080;
 app.listen(PORT, () => {
-  console.log("Servidor rodando na porta " + PORT);
+  connect();
+  console.log("Servidor rodando na porta: " + PORT);
 });
