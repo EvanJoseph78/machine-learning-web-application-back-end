@@ -65,3 +65,99 @@ export const getUserById = async (req, res, next) => {
     next(error);
   }
 }
+
+export const subscribeCourse = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const isUserSubscribed = user.cursos.find(
+      (curso) => curso.idcurso === req.params.courseId
+    );
+
+    if (isUserSubscribed) {
+      return res.status(200).json("usuário já inscrito!");
+    } else {
+
+      await User.findByIdAndUpdate(req.user.id, {
+        $push: { cursos: { idcurso: req.params.courseId, finalizado: false, datafinalizacao: '' } }
+      });
+
+      return res.status(200).json("Inscrição no curso realizada com sucesso!");
+
+    }
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export const unsubscribeCourse = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const isUserSubscribed = user.cursos.find(
+      (curso) => curso.idcurso === req.params.courseId
+    );
+
+    if (isUserSubscribed) {
+      await User.findByIdAndUpdate(req.user.id, {
+        $pull: { cursos: { idcurso: req.params.courseId } }
+      });
+
+      return res.status(200).json("Desinscrição no curso realizada com sucesso!");
+    } else {
+      return res.status(200).json("O usuário não está inscrito neste curso!");
+
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+export const getSubscribedCourses = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    res.status(200).json(user.cursos);
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+
+export const courseFinished = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    const isUserSubscribed = user.cursos.find(
+      (curso) => curso.idcurso === req.params.courseId
+    );
+
+    const datafinalizacao = new Date().toISOString();;
+
+    if (isUserSubscribed && !isUserSubscribed.finalizado) {
+      await User.findByIdAndUpdate(req.user.id, {
+        $set: { cursos: { idcurso: req.params.courseId, finalizado: true, datafinalizacao: datafinalizacao } }
+      });
+
+      return res.status(200).json("Curso finalizado!");
+    } else if (isUserSubscribed.finalizado) {
+      return res.status(200).json("Usuário já finalizou este curso!");
+
+    }
+    else {
+      return res.status(200).json("O usuário não está inscrito neste curso!");
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}

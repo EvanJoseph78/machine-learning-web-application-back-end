@@ -28,6 +28,9 @@ const UserSchema = new mongoose.Schema({
         finalizado: {
           type: Boolean,
         },
+        datafinalizacao: {
+          type: String,
+        }
       },
     ],
   },
