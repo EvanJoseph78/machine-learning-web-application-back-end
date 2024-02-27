@@ -1,4 +1,3 @@
-
 import express from "express";
 import { addModule, deleteModule, getModuleById, getModules, updateModule } from "../controllers/module.js";
 
