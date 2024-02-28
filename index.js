@@ -29,6 +29,7 @@ const connect = () => {
       });
     })
     .catch((err) => {
+      console.log("Falha ao conectar com o banco" + err);
       throw err;
     });
 };
