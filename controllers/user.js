@@ -161,3 +161,28 @@ export const courseFinished = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 }
+
+export const getCertificate = async (req, res) => {
+  try {
+
+    const user = await User.findById(req.user.id);
+
+    const isUserSubscribed = user.cursos.find(
+      (curso) => curso.idcurso === req.params.courseId
+    );
+
+    if (isUserSubscribed && isUserSubscribed.finalizado) {
+      const curso = user.cursos.find(
+        (curso) => curso.idcurso == req.params.courseId
+      )
+      return res.status(200).json(curso);
+    } else {
+      return res.status(200).json("Curso não finalizado!");
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+
+}

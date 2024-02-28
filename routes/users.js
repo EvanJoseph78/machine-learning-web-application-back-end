@@ -1,6 +1,6 @@
 import express from "express";
 import { verifyToken } from "../verifyToken.js";
-import { courseFinished, deleteUser, getAllUsers, getSubscribedCourses, getUserById, subscribeCourse, unsubscribeCourse, update } from "../controllers/user.js";
+import { courseFinished, deleteUser, getAllUsers, getCertificate, getSubscribedCourses, getUserById, subscribeCourse, unsubscribeCourse, update } from "../controllers/user.js";
 
 
 const router = express.Router();
@@ -30,6 +30,9 @@ router.put("/course/:courseId/finished", verifyToken, courseFinished);
 router.get("/sub/courses/", verifyToken, getSubscribedCourses);
 
 //TODO - fazer rota para obter certificado!
+
+router.get("/course/:courseId/certificate", verifyToken, getCertificate);
+
 
 
 
