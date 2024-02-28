@@ -37,6 +37,10 @@ app.use("/api/course", classes);
 app.use("/api/course", questions);
 
 
+app.get("/", (_, res) => {
+  return res.json("Hello World!");
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
   connect();
