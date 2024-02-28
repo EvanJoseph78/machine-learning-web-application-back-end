@@ -29,6 +29,8 @@ router.put("/course/:courseId/finished", verifyToken, courseFinished);
 //get subscribed courses
 router.get("/sub/courses/", verifyToken, getSubscribedCourses);
 
+//TODO - fazer rota para obter certificado!
+
 
 
 export default router;
