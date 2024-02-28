@@ -91,7 +91,7 @@ export const updateClass = async (req, res) => {
         );
 
         if (!aula) {
-          return res.status(404).json({ error: "Modulo não encontrado!" });
+          return res.status(404).json({ error: "Aula não encontrada!" });
         }
 
         if (!Number.isInteger(req.body.numeroaula) || req.body.numeroaula <= 0) {
@@ -140,7 +140,7 @@ export const updateClass = async (req, res) => {
 
         await curso.save();
 
-        res.status(200).json(curso.modulos);
+        res.status(200).json(updatedClass);
 
       } else {
         return res.status(404).json({ error: "Modulo não encontrado!" });
@@ -163,11 +163,39 @@ export const deleteClass = async (req, res) => {
         (modulo) => modulo._id == req.params.moduleId
       );
 
-      if (modulo) {
-        res.status(200).json(modulo.aulas.sort((a, b) => a.numeroaula - b.numeroaula));
-      } else {
+      if (!modulo) {
         return res.status(404).json({ error: "Modulo não encontrado!" });
       }
+
+      const aula = modulo.aulas.find(
+        (aula) => aula._id == req.params.classId
+      );
+
+      if (!aula) {
+        return res.status(404).json({ error: "Aula não encontrada!" });
+      }
+
+      const aulaIndex = modulo.aulas.findIndex(
+        aula => aula._id == req.params.classId
+      );
+
+      if (aulaIndex === -1) {
+        return res.status(404).json({ message: "Aula não encotrada!" });
+      }
+
+      const moduleIndex = curso.modulos.findIndex(
+        module => module._id == req.params.moduleId
+      );
+
+      if (moduleIndex === -1) {
+        return res.status(404).json({ message: "Módulo não encontrado" });
+      }
+
+      curso.modulos[moduleIndex].aulas.splice(aulaIndex, 1);
+
+      await curso.save();
+
+      return res.status(200).json("aula deletada com sucesso!");
 
     } else {
       return res.status(404).json({ error: "Curso não encontrado" });
