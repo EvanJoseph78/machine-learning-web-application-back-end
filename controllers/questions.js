@@ -62,3 +62,33 @@ export const getQuestions = async (req, res) => {
   }
 
 }
+
+export const deleteQuestion = async (req, res) => {
+  try {
+
+    const curso = await Course.findById(req.params.courseId);
+
+    if (!curso) {
+      return res.status(404).json({ error: "Curso não encontrado" });
+    }
+
+    const questionIndex = curso.questoes.findIndex(
+      question => question._id == req.params.questionId
+    );
+
+    if (questionIndex === -1) {
+      return res.status(404).json({ message: "Questão não encontrada!" });
+    }
+
+    curso.questoes.splice(questionIndex, 1);
+
+    await curso.save();
+
+    res.status(200).json(curso.questoes);
+
+
+  } catch (error) {
+    res.status(500).json({ msg: "Internal server error" });
+  }
+
+}
