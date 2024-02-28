@@ -40,7 +40,7 @@ app.use("/api/course", questions);
 
 
 app.get("/", (_, res) => {
-  return res.json("Hello World!");
+  return res.json("Hello World! Evan Joseph");
 });
 
 const PORT = 8080;
