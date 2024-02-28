@@ -6,6 +6,7 @@ import users from "./routes/users.js";
 import cursos from "./routes/course.js";
 import modulo from "./routes/module.js";
 import classes from "./routes/classes.js";
+import questions from "./routes/questions.js";
 import cookieParser from "cookie-parser";
 
 //configs
@@ -33,6 +34,7 @@ app.use("/api/users", users);
 app.use("/api/courses", cursos);
 app.use("/api/course", modulo);
 app.use("/api/course", classes);
+app.use("/api/course", questions);
 
 
 const PORT = 8080;
