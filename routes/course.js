@@ -1,5 +1,5 @@
-import express from "express";
-import { addCourse, deleteCourse, getAllCourses, getCourseById, updateCourse } from "../controllers/course.js";
+const express = require("express");
+const { addCourse, deleteCourse, getAllCourses, getCourseById, updateCourse } = require("../controllers/course.js");
 
 const router = express.Router();
 
@@ -18,5 +18,5 @@ router.put("/:id", updateCourse);
 //get course by id
 router.get("/:id", getCourseById);
 
-export default router;
+module.exports = router;
 

@@ -1,5 +1,5 @@
-import express from "express";
-import { addClass, deleteClass, getClasses, updateClass } from "../controllers/classes.js";
+const express = require("express");
+const { addClass, deleteClass, getClasses, updateClass } = require("../controllers/classes.js");
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.put("/:id/classes/:moduleId/:classId", updateClass);
 //deleta aula
 router.delete("/:id/classes/:moduleId/:classId", deleteClass);
 
-export default router;
+module.exports = router;

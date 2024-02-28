@@ -1,6 +1,6 @@
-import express from "express";
-import { verifyToken } from "../verifyToken.js";
-import { courseFinished, deleteUser, getAllUsers, getCertificate, getSubscribedCourses, getUserById, subscribeCourse, unsubscribeCourse, update } from "../controllers/user.js";
+const express = require("express");
+const { verifyToken } = require("../verifyToken.js");
+const { courseFinished, deleteUser, getAllUsers, getCertificate, getSubscribedCourses, getUserById, subscribeCourse, unsubscribeCourse, update } = require("../controllers/user.js");
 
 
 const router = express.Router();
@@ -36,5 +36,5 @@ router.get("/course/:courseId/certificate", verifyToken, getCertificate);
 
 
 
-export default router;
+module.exports = router;
 

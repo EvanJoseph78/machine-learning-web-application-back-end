@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
   {
@@ -128,6 +128,14 @@ const courseSchema = new mongoose.Schema(
 //   cursoSchema,
 // };
 //
+//
+//
+//
+const Course = mongoose.model("Course", courseSchema);
 
-export default mongoose.model("Curso", courseSchema);
+module.exports = {
+  Course,
+  courseSchema,
+};
+
 

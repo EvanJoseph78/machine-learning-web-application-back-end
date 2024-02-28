@@ -1,5 +1,5 @@
-import express from "express";
-import { addQuestion, deleteQuestion, getQuestions } from "../controllers/questions.js";
+const express = require("express");
+const { addQuestion, deleteQuestion, getQuestions } = require("../controllers/questions.js");
 
 const router = express.Router();
 
@@ -14,4 +14,4 @@ router.delete("/:courseId/question/:questionId", deleteQuestion);
 
 //TODO - fazer o updade question e o delete
 
-export default router;
+module.exports = router;

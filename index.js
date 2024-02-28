@@ -1,14 +1,14 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import auth from "./routes/auth.js";
-import users from "./routes/users.js";
-import cursos from "./routes/course.js";
-import modulo from "./routes/module.js";
-import classes from "./routes/classes.js";
-import questions from "./routes/questions.js";
-import cookieParser from "cookie-parser";
-import cors from 'cors';
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const auth = require("./routes/auth.js");
+const users = require("./routes/users.js");
+const cursos = require("./routes/course.js");
+const modulo = require("./routes/module.js");
+const classes = require("./routes/classes.js");
+const questions = require("./routes/questions.js");
+const cookieParser = require("cookie-parser");
+const cors = require('cors');
 
 //configs
 const app = express();
@@ -48,9 +48,5 @@ app.get("/", (_, res) => {
 const PORT = 8080;
 app.listen(PORT, () => {
   connect();
-
-  app.get("/teste", (_, res) => {
-    return res.json("Conectado ao banco");
-  });
   console.log("Servidor rodando na porta: " + PORT);
 });

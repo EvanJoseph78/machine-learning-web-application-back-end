@@ -1,5 +1,5 @@
-import express from "express";
-import { addModule, deleteModule, getModuleById, getModules, updateModule } from "../controllers/module.js";
+const express = require("express");
+const { addModule, deleteModule, getModuleById, getModules, updateModule } = require("../controllers/module.js");
 
 const router = express.Router();
 
@@ -20,4 +20,4 @@ router.get("/:id/modules", getModules);
 
 
 
-export default router;
+module.exports = router;
