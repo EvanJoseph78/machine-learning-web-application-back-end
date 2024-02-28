@@ -24,9 +24,6 @@ const connect = () => {
     .then(() => {
       console.log("Conectado ao banco");
 
-      app.get("/teste", (_, res) => {
-        return res.json("Conectado ao banco");
-      });
     })
     .catch((err) => {
       console.log("Falha ao conectar com o banco" + err);
@@ -51,5 +48,9 @@ app.get("/", (_, res) => {
 const PORT = 8080;
 app.listen(PORT, () => {
   connect();
+
+  app.get("/teste", (_, res) => {
+    return res.json("Conectado ao banco");
+  });
   console.log("Servidor rodando na porta: " + PORT);
 });
