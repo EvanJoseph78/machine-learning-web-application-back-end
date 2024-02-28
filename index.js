@@ -23,6 +23,10 @@ const connect = () => {
     .connect(process.env.MONGODB_CONNECT_URI)
     .then(() => {
       console.log("Conectado ao banco");
+
+      app.get("/teste", (_, res) => {
+        return res.json("Conectado ao banco");
+      });
     })
     .catch((err) => {
       throw err;
