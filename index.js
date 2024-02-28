@@ -8,11 +8,13 @@ import modulo from "./routes/module.js";
 import classes from "./routes/classes.js";
 import questions from "./routes/questions.js";
 import cookieParser from "cookie-parser";
+const cors = require("cors");
 
 //configs
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 
 dotenv.config()
 
