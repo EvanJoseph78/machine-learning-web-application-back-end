@@ -8,6 +8,17 @@
   ],
   "routes": [
     {
+      "src": "/api/auth/signup",
+      "methods": [
+        "POST"
+      ],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST"
+      },
+      "dest": "/index.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/"
     }
