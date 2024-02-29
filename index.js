@@ -1,8 +1,9 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
-import cursos from "./routes/course.js";
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+const cursos = require("./routes/course.js");
+
 
 //configs
 const app = express();
@@ -25,7 +26,6 @@ const connect = () => {
 // routes
 
 app.get("/", (_, res) => {
-  // return res.json("Hello World!");
   return res.json("Hello World!");
 });
 
