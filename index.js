@@ -1,12 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import auth from "./routes/auth.js";
-import users from "./routes/users.js";
-import cursos from "./routes/course.js";
-import modulo from "./routes/module.js";
-import classes from "./routes/classes.js";
-import questions from "./routes/questions.js";
 import cookieParser from "cookie-parser";
 
 //configs
@@ -29,12 +23,6 @@ const connect = () => {
 
 // routes
 
-app.use("/api/auth", auth);
-app.use("/api/users", users);
-app.use("/api/courses", cursos);
-app.use("/api/course", modulo);
-app.use("/api/course", classes);
-app.use("/api/course", questions);
 
 
 const PORT = 8080;
