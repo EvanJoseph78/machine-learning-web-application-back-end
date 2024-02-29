@@ -23,6 +23,9 @@ const connect = () => {
 
 // routes
 
+app.get("/", (_, res) => {
+  return res.json("Hello World!");
+});
 
 
 const PORT = 8080;
