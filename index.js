@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cursos from "./routes/course.js";
 
 //configs
 const app = express();
@@ -27,6 +28,7 @@ app.get("/", (_, res) => {
   return res.json("Hello World!");
 });
 
+app.use("/api/courses", cursos);
 
 const PORT = 8080;
 app.listen(PORT, () => {
