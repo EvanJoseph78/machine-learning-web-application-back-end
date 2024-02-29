@@ -2,28 +2,21 @@ const router = require("express").Router();
 
 const cursoController = require("../controllers/cursoController");
 
-// rotas de curso
+//get courses
+router.get("/", cursoController.getAllCourses);
 
-// rota para adicionar um novo curso
-router.route("/").post((req, res) => {
-  console.log(req.body);
-  cursoController.create(req, res);
-});
+//add course
+router.post("/", cursoController.addCourse);
 
-// rota para obter todos os cursos
-router.route("/").get((req, res) => cursoController.getAll(req, res));
+//delete course
+router.delete("/:courseId", cursoController.deleteCourse);
 
-// cria um módulo de um curso
-router.route("/:idcurso/add/modulos").post((req, res) => cursoController.addModule(req, res));
+//update course
+router.put("/:courseId", cursoController.updateCourse);
 
-// rotas de módulo
-// cria uma aula dentro de um módulo
-router.route("/:idcurso/modulos/:idmodulo/add/aula").post((req, res) => cursoController.addAula(req, res));
+//get course by id
+router.get("/:courseId", cursoController.getCourseById);
 
-// rotas de módulo
 
-router.route("/:idcurso/modulos/add/question").post((req, res) => cursoController.addQuestion(req, res));
-
-router.route("/:idcurso/modulos/questions").get((req, res) => cursoController.getQuestions(req, res));
 
 module.exports = router;
