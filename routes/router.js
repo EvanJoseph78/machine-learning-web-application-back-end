@@ -5,11 +5,13 @@ const cursoRouter = require("./curso.js");
 const userRouter = require("./users.js");
 const authRouter = require("./auth.js");
 const moduleRouter = require("./module.js");
+const questionRouter = require("./question.js");
 
 router.use("/courses", cursoRouter);
 router.use("/users", userRouter);
 router.use("/auth", authRouter);
 router.use("/course", moduleRouter);
+router.use("/course", questionRouter);
 
 module.exports = router;
 
