@@ -1,4 +1,5 @@
 const { User: User } = require("../models/User");
+const { Curso: Course } = require("../models/Curso");
 
 const userController = {
   getAllUsers: async (_, res) => {
@@ -175,7 +176,21 @@ const userController = {
         const curso = user.cursos.find(
           (curso) => curso.idcurso == req.params.courseId
         )
-        return res.status(200).json(curso);
+
+        const course = await Course.findById(curso.idcurso);
+
+        if (!course) {
+          return res.status(200).json("Curso não encontrado!");
+        }
+
+        const userData = {
+          nomeUsuario: user.name,
+          nomeCurso: course.nome,
+          finalizado: curso.finalizado,
+          datafinalizacao: curso.datafinalizacao
+        }
+
+        return res.status(200).json(userData);
       } else {
         return res.status(200).json("Curso não finalizado!");
       }
