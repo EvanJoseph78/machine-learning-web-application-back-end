@@ -26,7 +26,7 @@ const connect = () => {
 
 app.get("/", (_, res) => {
   // return res.json("Hello World!");
-  return res.json("Hello World!" + process.env.MONGODB_CONNECT_URI);
+  return res.json("Hello World!");
 });
 
 app.use("/api/courses", cursos);
