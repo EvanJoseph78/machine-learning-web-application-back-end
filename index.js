@@ -6,10 +6,12 @@ const PORT = process.env.PORT || 8080;
 // documentação da API
 const swaggerUi = require("swagger-ui-express");
 const swagger = require("./configs/swagger.js");
+const cookieParser = require("cookie-parser");
 
 // configs
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 // Rota para servir a documentação do Swagger
 app.use("/api-docs", swaggerUi.serve, swagger);
