@@ -10,5 +10,24 @@ router.get("/", userController.getAllUsers);
 //update user
 router.put("/:id", verifyToken, userController.update);
 
+//get user by id // desativar?
+router.get("/:id", userController.getUserById);
+
+//inscrever-se em um curso
+router.put("/sub/course/:courseId", verifyToken, userController.subscribeCourse);
+
+//desinscrever-se em um curso
+router.put("/unsub/course/:courseId", verifyToken, userController.unsubscribeCourse);
+
+//curso finalizado
+router.put("/course/:courseId/finished", verifyToken, userController.courseFinished);
+
+//get subscribed courses
+router.get("/sub/courses/", verifyToken, userController.getSubscribedCourses);
+
+//TODO - fazer rota para obter certificado!
+
+router.get("/course/:courseId/certificate", verifyToken, userController.getCertificate);
+
 module.exports = router;
 
