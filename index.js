@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config(); // permite a aplicação trabalhar com variáveis de ambiente
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 // documentação da API
 const swaggerUi = require("swagger-ui-express");
 const swagger = require("./configs/swagger.js");
