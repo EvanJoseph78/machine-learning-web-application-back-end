@@ -1,5 +1,5 @@
 import express from "express";
-import { addCourse, deleteCourse, getAllCourses, getCourseById, updateCourse } from "../controllers/course.js";
+import { getAllCourses } from "../controllers/course.js";
 
 const router = express.Router();
 
@@ -7,16 +7,16 @@ const router = express.Router();
 router.get("/", getAllCourses);
 
 //add course
-router.post("/", addCourse);
+// router.post("/", addCourse);
 
 //delete course
-router.delete("/:id", deleteCourse);
+// router.delete("/:id", deleteCourse);
 
 //update course
-router.put("/:id", updateCourse);
+// router.put("/:id", updateCourse);
 
 //get course by id
-router.get("/:id", getCourseById);
+// router.get("/:id", getCourseById);
 
 export default router;
 
