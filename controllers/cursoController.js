@@ -29,7 +29,7 @@ const cursoController = {
   },
 
   // busca todos os cursos
-  getAll: async (req, res) => {
+  getAll: async (_, res) => {
     try {
       const cursos = await CursoModel.find();
       const quantidadeCursos = cursos.length;
