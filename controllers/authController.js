@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const authController = {
 
   signup: async (req, res, next) => {
+    console.log("Passou Aqui!");
     try {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
@@ -15,7 +16,13 @@ const authController = {
       await newUser.save();
       res.status(200).send("Usuário criado com sucesso!");
     } catch (err) {
-      next(err);
+      if (err.code === 11000 && err.keyPattern.email) {
+        res.status(400).json({ error: "O email já está em uso." });
+      } else if (err.code === 11000 && err.keyPattern.username) {
+        res.status(400).json({ error: "O nome de usuário já está em uso." });
+      } else {
+        next(err);
+      }
     }
 
   },
