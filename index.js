@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:4200', // Atualize com a origem do seu aplicativo Angular
+  origin: ['http://localhost:4200', 'https://machine-learning-web-application-private.vercel.app'],
   credentials: true
 }));
 
