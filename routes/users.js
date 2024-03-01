@@ -19,6 +19,9 @@ router.get("/:id", userController.getUserById);
 //inscrever-se em um curso
 router.put("/sub/course/:courseId", verifyToken, userController.subscribeCourse);
 
+//retorna se o usuário está inscrito no curso
+router.get("/sub/course/:courseId", verifyToken, userController.subscribedCourse);
+
 //desinscrever-se em um curso
 router.put("/unsub/course/:courseId", verifyToken, userController.unsubscribeCourse);
 

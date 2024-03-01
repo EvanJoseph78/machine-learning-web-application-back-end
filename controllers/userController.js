@@ -110,6 +110,27 @@ const userController = {
     }
   },
 
+  subscribedCourse: async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+
+      const isUserSubscribed = user.cursos.find(
+        (curso) => curso.idcurso === req.params.courseId
+      );
+
+      if (isUserSubscribed) {
+        return res.status(200).json(true);
+      } else {
+        return res.status(200).json(false);
+      }
+
+    } catch (error) {
+      console.error(error);
+
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
   unsubscribeCourse: async (req, res) => {
     try {
       const user = await User.findById(req.user.id);
