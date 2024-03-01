@@ -69,6 +69,7 @@ const userController = {
   },
 
   subscribeCourse: async (req, res) => {
+    console.log("Passou Aqui!");
     try {
       const user = await User.findById(req.user.id);
 

@@ -52,6 +52,24 @@ const cursoController = {
     }
   },
 
+  getAllCoursesBasicInfo: async (_, res) => {
+    try {
+      const cursos = await Course.find();
+      const quantidadeCursos = cursos.length;
+
+      // Mapear os cursos para extrair apenas _id e nome de cada curso
+      const courseBasicInfo = cursos.map(curso => ({
+        _id: curso._id,
+        nome: curso.nome
+      }));
+
+      res.json({ cursos: courseBasicInfo, qntcursos: quantidadeCursos });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ msg: "Internal server error" });
+    }
+  },
+
   deleteCourse: async (req, res) => {
     try {
       const curso = await Course.findById(req.params.courseId);

@@ -5,6 +5,9 @@ const cursoController = require("../controllers/cursoController");
 //get courses
 router.get("/", cursoController.getAllCourses);
 
+//get courses
+router.get("/info", cursoController.getAllCoursesBasicInfo);
+
 //add course
 router.post("/", cursoController.addCourse);
 
