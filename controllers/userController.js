@@ -51,7 +51,6 @@ const userController = {
     }
   },
 
-
   getUserById: async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);
@@ -68,8 +67,23 @@ const userController = {
     }
   },
 
+  getLoggedUser: async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user.id);
+
+      if (!user) {
+        return next(createError(404, "Usuário não logado!"));
+      }
+
+      const { password, ...userWithoutSensitiveFields } = user.toObject();
+
+      res.status(200).json(userWithoutSensitiveFields);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   subscribeCourse: async (req, res) => {
-    console.log("Passou Aqui!");
     try {
       const user = await User.findById(req.user.id);
 

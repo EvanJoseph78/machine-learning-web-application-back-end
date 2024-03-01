@@ -7,6 +7,9 @@ const userController = require("../controllers/userController");
 //get all users
 router.get("/", userController.getAllUsers);
 
+//get all users
+router.get("/user/get", verifyToken, userController.getLoggedUser);
+
 //update user
 router.put("/:id", verifyToken, userController.update);
 
