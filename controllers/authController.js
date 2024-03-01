@@ -12,6 +12,10 @@ const authController = {
       const hash = bcrypt.hashSync(req.body.password, salt);
       const newUser = new User({ ...req.body, password: hash });
 
+      if (!newUser.username || newUser.username.trim().length < 3) {
+        return res.status(400).json({ message: "Username inválido" });
+      }
+
       await newUser.save();
 
       res.status(200).json("Usuário criado com sucesso!");
