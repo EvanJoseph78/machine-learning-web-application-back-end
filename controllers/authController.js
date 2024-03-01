@@ -12,7 +12,7 @@ const authController = {
       const hash = bcrypt.hashSync(req.body.password, salt);
       const newUser = new User({ ...req.body, password: hash });
 
-      if (!newUser.username || newUser.username.trim().length < 3) {
+      if (!newUser.username || newUser.username.trim().length < 3 || newUser.username.includes(' ')) {
         return res.status(400).json({ message: "Username inválido" });
       }
 
