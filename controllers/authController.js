@@ -14,12 +14,15 @@ const authController = {
       const newUser = new User({ ...req.body, password: hash });
 
       await newUser.save();
-      res.status(200).send("Usuário criado com sucesso!");
+
+      res.status(200).json("Usuário criado com sucesso!");
     } catch (err) {
-      if (err.code === 11000 && err.keyPattern.email) {
-        res.status(400).json({ error: "O email já está em uso." });
-      } else if (err.code === 11000 && err.keyPattern.username) {
-        res.status(400).json({ error: "O nome de usuário já está em uso." });
+      if (err.code === 11000) {
+        if (err.keyPattern.username) {
+          res.status(400).json("O nome de usuário já está em uso.");
+        } else if (err.keyPattern.email) {
+          res.status(400).json("O email já está em uso.");
+        }
       } else {
         next(err);
       }
