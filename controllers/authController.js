@@ -13,7 +13,7 @@ const authController = {
       const newUser = new User({ ...req.body, password: hash });
 
       if (!newUser.username || newUser.username.trim().length < 3 || newUser.username.includes(' ')) {
-        return res.status(400).json({ message: "Username inválido" });
+        return res.status(400).json("Username inválido");
       }
 
       await newUser.save();
