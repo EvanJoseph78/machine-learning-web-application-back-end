@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 const authController = {
 
   signup: async (req, res, next) => {
-    console.log("Passou Aqui!");
     try {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
