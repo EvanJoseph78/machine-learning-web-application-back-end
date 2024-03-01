@@ -42,7 +42,9 @@ const authController = {
       const { password, ...others } = user._doc;
 
       res.cookie("access_token", token, {
-        httpOnly: true
+        httpOnly: true,
+        sameSite: 'None', // Adiciona SameSite=None ao cookie
+        secure: true // Requer que o cookie seja enviado apenas em conexões HTTPS
       }).status(200).json(others);
 
     } catch (err) {

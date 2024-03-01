@@ -10,7 +10,12 @@ const cookieParser = require("cookie-parser");
 
 // configs
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:4200', // Atualize com a origem do seu aplicativo Angular
+  credentials: true
+}));
+
 app.use(cookieParser());
 
 // Rota para servir a documentação do Swagger
