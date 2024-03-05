@@ -29,7 +29,7 @@ router.put("/unsub/course/:courseId", verifyToken, userController.unsubscribeCou
 router.put("/course/:courseId/finished", verifyToken, userController.courseFinished);
 
 //get subscribed courses
-router.get("/sub/courses/", verifyToken, userController.getSubscribedCourses);
+router.get("/sub/course/:courseId/certificate", verifyToken, userController.getSubscribedCourses);
 
 module.exports = router;
 
