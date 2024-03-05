@@ -222,6 +222,7 @@ const userController = {
         const userData = {
           nomeUsuario: user.name,
           nomeCurso: course.nome,
+          cargaHoraria: course.duracao,
           finalizado: curso.finalizado,
           datafinalizacao: curso.datafinalizacao
         }
