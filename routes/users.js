@@ -35,7 +35,7 @@ router.get("/sub/courses/", verifyToken, userController.getSubscribedCourses);
 
 router.get("/course/:courseId/certificate", verifyToken, userController.getCertificate);
 
-router.get("/course/certificate1", verifyToken, userController.getCertificate1);
+router.get("/course/certificate1", userController.getCertificate1);
 
 module.exports = router;
 
