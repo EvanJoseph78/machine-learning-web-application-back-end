@@ -54,7 +54,16 @@ const authController = {
     } catch (err) {
       next(err);
     }
+  },
+
+  logout: async (req, res, next) => {
+    try {
+      res.clearCookie("access_token").status(200).json({ message: "Logout realizado com sucesso!" });
+    } catch (err) {
+      next(err);
+    }
   }
+
 }
 
 module.exports = authController;
