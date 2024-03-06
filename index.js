@@ -13,7 +13,8 @@ app.use(express.json());
 
 app.use(cors({
   origin: ['http://localhost:4200', 'https://machine-learning-web-application-private.vercel.app/'],
-  credentials: true
+  credentials: true,
+  allowCredentials: true
 }));
 
 app.use(cookieParser());
