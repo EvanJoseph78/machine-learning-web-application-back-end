@@ -87,7 +87,6 @@ const cursoController = {
 
   updateCourse: async (req, res) => {
     try {
-
       const newCourse = {
         nome: req.body.nome,
         introducao: req.body.introducao,
@@ -101,9 +100,9 @@ const cursoController = {
         linkcapa: req.body.linkcapa,
       };
 
-      const curso = await Course.findById(req.params.courseId, newCourse);
+      const curso = await Course.findById(req.params.courseId);
       if (curso) {
-        await Course.findByIdAndUpdate(req.params.courseId);
+        await Course.findByIdAndUpdate(req.params.courseId, newCourse);
         res.status(200).json({ message: "Curso atualizado com sucesso!" });
       } else {
         res.status(404).json({ message: "Curso não encontrado!" });
