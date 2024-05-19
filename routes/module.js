@@ -1,7 +1,10 @@
 const router = require("express").Router();
 
+const cursoController = require("../controllers/cursoController");
 const moduleController = require("../controllers/moduleController");
 
+//Adiciona um módulo
+router.post("/:courseId/", moduleController.addModule);
 
 //Get module by id
 router.get("/:courseId/module/:moduleId", moduleController.getModuleById);
