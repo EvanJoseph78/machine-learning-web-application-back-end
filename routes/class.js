@@ -2,7 +2,6 @@ const router = require("express").Router();
 
 const classController = require("../controllers/classController");
 
-
 //Adiciona uma aula a um módulo
 router.post("/:courseId/classes/:moduleId", classController.addClass);
 
