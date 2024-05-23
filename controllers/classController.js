@@ -206,6 +206,34 @@ const classController = {
     }
   },
 
+  getClassById: async (req, res) => {
+    try {
+      const curso = await Course.findById(req.params.courseId);
+      if (!curso) {
+        return res.status(404).json({ error: "Curso não encontrado" });
+      }
+
+      const modulo = curso.modulos.find(
+        (modulo) => modulo._id == req.params.moduleId
+      );
+      if (!modulo) {
+        return res.status(404).json({ error: "Módulo não encontrado" });
+      }
+
+      const aula = modulo.aulas.find(
+        (aula) => aula._id == req.params.classId
+      );
+      if (!aula) {
+        return res.status(404).json({ error: "Aula não encontrada" });
+      }
+
+      res.status(200).json(aula);
+    } catch (error) {
+      res.status(500).json({ msg: "Erro interno do servidor" });
+    }
+  },
+
+
 }
 
 module.exports = classController;
