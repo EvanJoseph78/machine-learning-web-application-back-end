@@ -17,9 +17,11 @@ const cursoController = {
         linkcapa: req.body.linkcapa,
       };
 
-      const reponse = await Course.create(curso);
+      const createdCourse = await Course.create(curso);
+      const id = createdCourse._id;
 
-      res.status(201).json({ reponse, msg: "curso criado com sucesso!" });
+      res.status(201).json({ id, msg: "curso criado com sucesso!" });
+
     } catch (error) {
       console.error(error);
       res.status(500).json({ msg: "Internal server error" });
@@ -103,6 +105,23 @@ const cursoController = {
       const curso = await Course.findById(req.params.courseId);
       if (curso) {
         await Course.findByIdAndUpdate(req.params.courseId, newCourse);
+        res.status(200).json({ message: "Curso atualizado com sucesso!" });
+      } else {
+        res.status(404).json({ message: "Curso não encontrado!" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  },
+
+  patchCourse: async (req, res) => {
+    try {
+      const updates = req.body;  // This contains only the fields to be updated
+      const curso = await Course.findById(req.params.courseId);
+
+      if (curso) {
+        await Course.findByIdAndUpdate(req.params.courseId, updates, { new: true });
         res.status(200).json({ message: "Curso atualizado com sucesso!" });
       } else {
         res.status(404).json({ message: "Curso não encontrado!" });

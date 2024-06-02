@@ -20,6 +20,8 @@ router.put("/:courseId", cursoController.updateCourse);
 //get course by id
 router.get("/:courseId", cursoController.getCourseById);
 
+//partial update course (PATCH)
+router.patch("/:courseId", cursoController.patchCourse);
 
 
 module.exports = router;

@@ -14,7 +14,7 @@ router.put("/:courseId/classes/:moduleId/:classId", classController.updateClass)
 //deleta aula
 router.delete("/:courseId/classes/:moduleId/:classId", classController.deleteClass);
 
-//deleta aula
+//get aula by Id
 router.get("/:courseId/classes/:moduleId/:classId", classController.getClassById);
 
 module.exports = router;

@@ -10,31 +10,31 @@ const cursoSchema = new Schema(
     },
     introducao: {
       type: String,
-      required: true,
+      required: false,
     },
     descricao: {
       type: String,
-      required: true,
+      required: false,
     },
     duracao: {
       type: Number,
-      required: true,
+      required: false,
     },
     disciplina: {
       type: String,
-      required: true,
+      required: false,
     },
     nivel: {
       type: String,
-      required: true,
+      required: false,
     },
     certificado: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     topicos: {
       type: [String],
-      required: true,
+      required: false,
     },
     professores: [
       {
@@ -123,7 +123,7 @@ const cursoSchema = new Schema(
   { timestamps: true },
 );
 
-const Curso = mongoose.model("Curso", cursoSchema);
+const Curso = mongoose.model("CursoTeste", cursoSchema);
 
 module.exports = {
   Curso,
